@@ -8,7 +8,8 @@ namespace DIO.Series.Classes
 
         public void Delete(Guid id)
         {
-            dictionarySerie[id].Excluir();
+            if(ValidateSerieID(id))
+                dictionarySerie[id].Excluir();
         }
 
         public void Insert(Serie entity)
@@ -29,20 +30,40 @@ namespace DIO.Series.Classes
 
         public Guid NextId()
         {
-            //throw new NotImplementedException();
+            throw new NotImplementedException();
         }
 
+        ///Throws ArgumentException.
         public Serie ReturnByID(Guid id)
         {
-            if(dictionarySerie[id].Excluido)
-                throw new UnauthorizedAccessException("Essa Série Foi Excluída e Não Se Encontra Mais Disponível.");
-            
-            return dictionarySerie[id];
+            if(ValidateSerieID(id))
+                return dictionarySerie[id];
+            else
+                throw new ArgumentException("ID (GUID) de série inválida.");            
         }
 
         public void Update(Guid id, Serie entity)
         {
-            dictionarySerie[id] = entity;
+            if(ValidateSerieID(id))
+                dictionarySerie[id] = entity;
+         }
+
+        private bool ValidateSerieID(Guid id)
+        {
+            if (dictionarySerie.TryGetValue(id, out Serie serie))
+            {
+                if (serie.Excluido)
+                {
+                    Console.WriteLine($"A série associada à chave GUID informada foi excluída.{Environment.NewLine}GUID Inválida: {id}");
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                Console.WriteLine($"Não foram encontradas séries associadas à chave GUID informada.{Environment.NewLine}GUID Inválida: {id}");
+                return false;
+            }
         }
     }
 }

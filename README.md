@@ -9,6 +9,8 @@ Segue abaixo uma lista das principais modificações e adições feitas ao proje
 - O ID da série agora utiliza um Guid único gerado automaticamente no construtor ao invés de um int passado por parâmetro na instanciação do objeto. 
 - Utilizado 'Dictionary' ao invés de 'List' no repositório (IRepository) para possibilitar o retorno por chave (Guid) ao invés de ID (int);
 - Criado algorítimo para retornar apenas séries não excluídas num dicionário 'clean' no retorno da função "Dictionary()" do repositório;
+- Criado um método "ValidateSerieID" com "TryGetValue" para tratar buscas por séries com código inválido ou por séries excluídas evitando excessões de acesso inválidas em métodos 'void'.
+- Lançada exceção para tentativa de acesso a séries inválidas em métodos com return que possam receber parâmetros inválidos para acesso a séries.
 
 ### Pequenas Modificações em Relação ao Projeto Original
 
