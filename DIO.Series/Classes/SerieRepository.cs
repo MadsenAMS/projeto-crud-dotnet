@@ -8,7 +8,7 @@ namespace DIO.Series.Classes
 
         public void Delete(Guid id)
         {
-            if(ValidateSerieID(id))
+            if (ValidateSerieID(id))
                 dictionarySerie[id].Excluir();
         }
 
@@ -20,7 +20,7 @@ namespace DIO.Series.Classes
         public Dictionary<Guid, Serie> Dictionary()
         {
             Dictionary<Guid, Serie> cleanDictionary = new Dictionary<Guid, Serie>();
-            foreach(KeyValuePair<Guid, Serie> serie in dictionarySerie)
+            foreach (KeyValuePair<Guid, Serie> serie in dictionarySerie)
             {
                 if (!serie.Value.Excluido)
                     cleanDictionary.Add(serie.Key, serie.Value);
@@ -36,17 +36,17 @@ namespace DIO.Series.Classes
         ///Throws ArgumentException.
         public Serie ReturnByID(Guid id)
         {
-            if(ValidateSerieID(id))
+            if (ValidateSerieID(id))
                 return dictionarySerie[id];
             else
-                throw new ArgumentException("ID (GUID) de série inválida.");            
+                throw new ArgumentException("ID (GUID) de série inválida.");
         }
 
         public void Update(Guid id, Serie entity)
         {
-            if(ValidateSerieID(id))
+            if (ValidateSerieID(id))
                 dictionarySerie[id] = entity;
-         }
+        }
 
         private bool ValidateSerieID(Guid id)
         {
