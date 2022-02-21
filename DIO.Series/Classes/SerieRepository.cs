@@ -14,7 +14,8 @@ namespace DIO.Series.Classes
 
         public void Insert(Serie entity)
         {
-            dictionarySerie.Add(entity.Id, entity);
+            Guid guid = Guid.Parse(entity.GetID());
+            dictionarySerie.Add(guid, entity);
         }
 
         public Dictionary<Guid, Serie> Dictionary()
@@ -22,7 +23,7 @@ namespace DIO.Series.Classes
             Dictionary<Guid, Serie> cleanDictionary = new Dictionary<Guid, Serie>();
             foreach (KeyValuePair<Guid, Serie> serie in dictionarySerie)
             {
-                if (!serie.Value.Excluido)
+                if (!serie.Value.Excluded)
                     cleanDictionary.Add(serie.Key, serie.Value);
             }
             return cleanDictionary;
@@ -52,7 +53,7 @@ namespace DIO.Series.Classes
         {
             if (dictionarySerie.TryGetValue(id, out Serie serie))
             {
-                if (serie.Excluido)
+                if (serie.Excluded)
                 {
                     Console.WriteLine($"A série associada à chave GUID informada foi excluída.{Environment.NewLine}GUID Inválida: {id}");
                     return false;

@@ -16,7 +16,8 @@ namespace DIO.Series
         Policial = 11,
         Romance = 12,
         Suspense = 13,
-        Terror = 14
+        Terror = 14,
+        Indefinido = 15
 
     }
 
