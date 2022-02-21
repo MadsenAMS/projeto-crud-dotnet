@@ -124,19 +124,60 @@ namespace DIO.Series
 
             Console.WriteLine("Escolha o Gênero da Série:");
             for (int i = 1; i < 15; i++)
-            {
                 Console.WriteLine($"{i} - {Enum.GetName(typeof(Genero), i)}");
-            }
+
 
             if (int.TryParse(Console.ReadLine(), out int inputGenero))
-            {
                 if (inputGenero > 0 && inputGenero < 15)
-                {
                     genero = (Genero)inputGenero;
+                else
+                {
+                    InvalidInput();
+                    return;
                 }
+
+            Console.Clear();
+            Console.WriteLine("Insira o Título da Série:");
+            string titulo = Console.ReadLine();
+            if (titulo == null)
+            {
+                InvalidInput();
+                return;
             }
 
-            Console.WriteLine($"Gênero Escolhido = {genero.ToString()}");
+            Console.Clear();
+            Console.WriteLine("Insira uma Descrição para a Série:");
+            string descricao = Console.ReadLine();
+            if (descricao == null)
+            {
+                InvalidInput();
+                return;
+            }
+
+            Console.Clear();
+            Console.WriteLine("Insira a Data de Lançamento da Série:");
+            if (!int.TryParse(Console.ReadLine(), out int ano)
+            {
+                InvalidInput();
+                return;
+            }
+
+
+            Serie serie = new Serie(genero, titulo, descricao, ano);
+        }
+
+        private static void ModificarSerie()
+        {
+            Console.WriteLine("Digite o código ou título da série que deseja modificar");
+            
+        }
+
+
+        private static void InvalidInput()
+        {
+            Console.Clear();
+            Console.WriteLine("Opção Inválida");
+            EndQuery();
         }
 
         private static void EndQuery()
