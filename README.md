@@ -1,6 +1,6 @@
 # Projeto .NET: APP para Cadastro De Series Em Plataforma
 
-Projeto para cadastro de séries em aplicativo estilo 'Netflix' com .NET para bootcamp Localiza.
+Projeto praticar a implementação de um 'CRUD' rudimentar para administração de séries em uma plataforma utilizando C#.
 
 Segue abaixo uma lista das principais modificações e adições feitas ao projeto original apresentado pelo instrutor, e na sequência uma lista de coisas novas que aprendi fazendo o projeto.
 
